@@ -52,8 +52,8 @@ import { add, discOutline, logOutOutline } from "ionicons/icons";
 import AlbumCard from "@/components/AlbumCard.vue";
 import { currentUser, logout, userAlbums } from "@/services/storage";
 const r = useRouter();
-function signOut() {
-  logout();
+async function signOut() {
+  await logout();
   r.replace("/login");
 }
 </script>

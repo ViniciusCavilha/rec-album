@@ -54,9 +54,9 @@ const r = useRouter(),
   email = ref(""),
   password = ref(""),
   error = ref("");
-function submit() {
+async function submit() {
   try {
-    login(email.value, password.value);
+    await login(email.value, password.value);
     r.replace("/app/home");
   } catch (e) {
     error.value = (e as Error).message;

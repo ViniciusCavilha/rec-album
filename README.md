@@ -40,14 +40,15 @@ A interface foi pensada para dispositivos móveis, com identidade visual inspira
 - [TypeScript](https://www.typescriptlang.org/) — tipagem e segurança do código
 - [Ionic Vue](https://ionicframework.com/docs/vue/overview) — componentes e experiência mobile
 - [Capacitor](https://capacitorjs.com/) — integração com Android
+- [SQLite](https://www.sqlite.org/) — banco de dados nativo no Android
 - [Vue Router](https://router.vuejs.org/) — navegação e proteção de rotas
 - [Vite](https://vite.dev/) — ambiente de desenvolvimento e build
 
 ## Persistência dos dados
 
-Este projeto não depende de um servidor externo. Contas, sessão e álbuns são armazenados no `localStorage` do dispositivo.
+No Android, contas, sessão, álbuns e músicas são persistidos em um banco SQLite nativo por meio do plugin `@capacitor-community/sqlite`. As tabelas possuem relacionamentos entre usuários, álbuns e faixas, com exclusão em cascata.
 
-Os dados de cada coleção são associados ao usuário autenticado. Limpar os dados do aplicativo ou do navegador também remove as informações cadastradas.
+Na primeira execução após a atualização, os dados antigos do `localStorage` são migrados automaticamente para o SQLite. Durante o desenvolvimento no navegador, o aplicativo mantém um fallback em `localStorage`, pois o banco nativo está disponível no Android.
 
 > A autenticação local é adequada para fins acadêmicos e demonstração. Em um produto real, senhas devem ser processadas por um backend seguro e nunca armazenadas diretamente no dispositivo.
 
@@ -79,7 +80,7 @@ Acesse o endereço informado pelo Vite no terminal, normalmente `http://localhos
 Com o Android Studio e o SDK Android instalados:
 
 ```bash
-npm run build
+npx ionic build
 npx cap sync android
 npx cap open android
 ```
@@ -89,7 +90,7 @@ No Android Studio, aguarde a sincronização do Gradle, selecione um emulador ou
 Sempre que alterar o código web, gere um novo build e sincronize novamente:
 
 ```bash
-npm run build
+npm ionic build
 npx cap sync android
 ```
 

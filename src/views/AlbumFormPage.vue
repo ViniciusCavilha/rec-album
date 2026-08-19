@@ -84,8 +84,8 @@ const r = useRouter(),
   artist = ref(""),
   year = ref(new Date().getFullYear()),
   songs = ref([""]);
-function save() {
-  addAlbum({
+async function save() {
+  await addAlbum({
     name: name.value.trim(),
     artist: artist.value.trim(),
     year: year.value,
