@@ -1,1 +1,46 @@
-<template><ion-page><ion-header><ion-toolbar><ion-title>Sobre</ion-title></ion-toolbar></ion-header><ion-content><main class="page about"><div class="about-hero"><ion-icon :icon="disc"/><p class="page-kicker">Versão 1.0.0</p><h1>REC ÁLBUM</h1><p>Um lugar silencioso para guardar tudo o que merece ser ouvido de novo.</p></div><section><h2>Termos de uso</h2><p>Use o aplicativo de forma responsável. Os dados cadastrados são de responsabilidade do usuário e destinam-se à organização de uma coleção pessoal.</p></section><section><h2>Política de privacidade</h2><p>Contas e álbuns ficam somente no armazenamento local deste dispositivo. Nenhum dado é vendido, compartilhado ou enviado para serviços externos.</p></section></main></ion-content></ion-page></template><script setup lang="ts">import{IonContent,IonHeader,IonIcon,IonPage,IonTitle,IonToolbar}from'@ionic/vue';import{disc}from'ionicons/icons';</script>
+<template>
+  <ion-page
+    ><ion-header
+      ><ion-toolbar><ion-title>Sobre</ion-title></ion-toolbar></ion-header
+    ><ion-content
+      ><main class="page about">
+        <div class="about-hero">
+          <ion-icon :icon="disc" />
+          <p class="page-kicker">Versão 1.0.0</p>
+          <h1>REC ÁLBUM</h1>
+          <p>
+            Um lugar silencioso para guardar tudo o que merece ser ouvido de
+            novo.
+          </p>
+        </div>
+        <section>
+          <h2>Termos de uso</h2>
+          <p>
+            Use o aplicativo de forma responsável. Os dados cadastrados são de
+            responsabilidade do usuário e destinam-se à organização de uma
+            coleção pessoal.
+          </p>
+        </section>
+        <section>
+          <h2>Política de privacidade</h2>
+          <p>
+            Contas e álbuns ficam somente no armazenamento local deste
+            dispositivo. Nenhum dado é vendido, compartilhado ou enviado para
+            serviços externos.
+          </p>
+        </section>
+      </main></ion-content
+    ></ion-page
+  >
+</template>
+<script setup lang="ts">
+import {
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/vue";
+import { disc } from "ionicons/icons";
+</script>

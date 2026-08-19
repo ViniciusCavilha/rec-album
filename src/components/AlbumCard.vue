@@ -1,9 +1,168 @@
 <template>
-  <article class="album-card" @click="$router.push('/app/album/'+album.id)">
-    <div class="cover" :style="{background: gradient}"><span class="cover-label">REC</span><ion-icon :icon="disc"/><span class="cover-year">{{album.year}}</span><button class="heart" :aria-label="album.favorite?'Desfavoritar':'Favoritar'" @click.stop="toggleFavorite(album.id)"><ion-icon :icon="album.favorite?heart:heartOutline"/></button></div>
-    <div class="meta"><div><h3>{{album.name}}</h3><p>{{album.artist}}</p></div><button class="menu" aria-label="Remover álbum" @click.stop="remove"><ion-icon :icon="trashOutline"/></button></div>
-    <div class="tracks"><span>{{album.songs.length.toString().padStart(2,'0')}} FAIXAS</span><span>VER ÁLBUM <ion-icon :icon="arrowForward"/></span></div>
+  <article class="album-card" @click="$router.push('/app/album/' + album.id)">
+    <div class="cover" :style="{ background: gradient }">
+      <span class="cover-label">REC</span><ion-icon :icon="disc" /><span
+        class="cover-year"
+        >{{ album.year }}</span
+      ><button
+        class="heart"
+        :aria-label="album.favorite ? 'Desfavoritar' : 'Favoritar'"
+        @click.stop="toggleFavorite(album.id)"
+      >
+        <ion-icon :icon="album.favorite ? heart : heartOutline" />
+      </button>
+    </div>
+    <div class="meta">
+      <div>
+        <h3>{{ album.name }}</h3>
+        <p>{{ album.artist }}</p>
+      </div>
+      <button class="menu" aria-label="Remover álbum" @click.stop="remove">
+        <ion-icon :icon="trashOutline" />
+      </button>
+    </div>
+    <div class="tracks">
+      <span>{{ album.songs.length.toString().padStart(2, "0") }} FAIXAS</span
+      ><span>VER ÁLBUM <ion-icon :icon="arrowForward" /></span>
+    </div>
   </article>
 </template>
-<script setup lang="ts">import{computed}from'vue';import{alertController,IonIcon}from'@ionic/vue';import{arrowForward,disc,heart,heartOutline,trashOutline}from'ionicons/icons';import type{Album}from'@/services/storage';import{removeAlbum,toggleFavorite}from'@/services/storage';const p=defineProps<{album:Album}>();const n=[...p.album.name].reduce((s,c)=>s+c.charCodeAt(0),0),gradient=computed(()=>`linear-gradient(145deg,hsl(${n%360} 72% 58%),hsl(${(n+65)%360} 65% 25%))`);async function remove(){const a=await alertController.create({header:'Tirar da coleção?',message:`“${p.album.name}” será removido definitivamente.`,cssClass:'dark-alert',buttons:[{text:'Cancelar',role:'cancel'},{text:'Remover',role:'destructive',handler:()=>removeAlbum(p.album.id)}]});a.present()};</script>
-<style scoped>.album-card{cursor:pointer;min-width:0}.cover{position:relative;aspect-ratio:1;border-radius:24px;overflow:hidden;display:grid;place-items:center;box-shadow:0 24px 55px #0006;transition:.35s cubic-bezier(.2,.8,.2,1)}.album-card:hover .cover{transform:translateY(-7px) rotate(-1deg);box-shadow:0 32px 65px #0009}.cover:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#fff2,transparent 35%,#0005)}.cover>ion-icon{font-size:42%;color:#ffffffd9;filter:drop-shadow(0 8px 18px #0005)}.cover-label,.cover-year{position:absolute;z-index:2;font-size:.68rem;font-weight:900;letter-spacing:.2em}.cover-label{top:20px;left:20px}.cover-year{bottom:20px;left:20px}.heart{position:absolute;z-index:3;right:14px;top:14px;width:44px;height:44px;border:0;border-radius:50%;background:#0c0d0ccc;color:#b9ff66;font-size:21px;display:grid;place-items:center;backdrop-filter:blur(10px)}.meta{display:flex;justify-content:space-between;align-items:flex-start;padding:17px 3px 10px}.meta h3{font-size:1.25rem;letter-spacing:-.04em;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta p{color:#999d94;margin:5px 0 0}.menu{border:0;background:transparent;color:#777c73;font-size:18px;padding:5px}.tracks{border-top:1px solid #ffffff14;padding:11px 3px;display:flex;justify-content:space-between;color:#777c73;font-size:.65rem;font-weight:850;letter-spacing:.12em}.tracks span:last-child{color:#b9ff66;display:flex;gap:5px;align-items:center}</style>
+<script setup lang="ts">
+import { computed } from "vue";
+import { alertController, IonIcon } from "@ionic/vue";
+import {
+  arrowForward,
+  disc,
+  heart,
+  heartOutline,
+  trashOutline,
+} from "ionicons/icons";
+import type { Album } from "@/services/storage";
+import { removeAlbum, toggleFavorite } from "@/services/storage";
+const p = defineProps<{ album: Album }>();
+const n = [...p.album.name].reduce((s, c) => s + c.charCodeAt(0), 0),
+  gradient = computed(
+    () =>
+      `linear-gradient(145deg,hsl(${n % 360} 72% 58%),hsl(${(n + 65) % 360} 65% 25%))`,
+  );
+async function remove() {
+  const a = await alertController.create({
+    header: "Tirar da coleção?",
+    message: `“${p.album.name}” será removido definitivamente.`,
+    cssClass: "dark-alert",
+    buttons: [
+      { text: "Cancelar", role: "cancel" },
+      {
+        text: "Remover",
+        role: "destructive",
+        handler: () => removeAlbum(p.album.id),
+      },
+    ],
+  });
+  a.present();
+}
+</script>
+<style scoped>
+.album-card {
+  cursor: pointer;
+  min-width: 0;
+}
+.cover {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 24px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 24px 55px #0006;
+  transition: 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.album-card:hover .cover {
+  transform: translateY(-7px) rotate(-1deg);
+  box-shadow: 0 32px 65px #0009;
+}
+.cover:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #fff2, transparent 35%, #0005);
+}
+.cover > ion-icon {
+  font-size: 42%;
+  color: #ffffffd9;
+  filter: drop-shadow(0 8px 18px #0005);
+}
+.cover-label,
+.cover-year {
+  position: absolute;
+  z-index: 2;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+}
+.cover-label {
+  top: 20px;
+  left: 20px;
+}
+.cover-year {
+  bottom: 20px;
+  left: 20px;
+}
+.heart {
+  position: absolute;
+  z-index: 3;
+  right: 14px;
+  top: 14px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: #0c0d0ccc;
+  color: #b9ff66;
+  font-size: 21px;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(10px);
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 17px 3px 10px;
+}
+.meta h3 {
+  font-size: 1.25rem;
+  letter-spacing: -0.04em;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.meta p {
+  color: #999d94;
+  margin: 5px 0 0;
+}
+.menu {
+  border: 0;
+  background: transparent;
+  color: #777c73;
+  font-size: 18px;
+  padding: 5px;
+}
+.tracks {
+  border-top: 1px solid #ffffff14;
+  padding: 11px 3px;
+  display: flex;
+  justify-content: space-between;
+  color: #777c73;
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+.tracks span:last-child {
+  color: #b9ff66;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+</style>

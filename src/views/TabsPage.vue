@@ -1,1 +1,33 @@
-<template><ion-page><ion-tabs><ion-router-outlet/><ion-tab-bar slot="bottom"><ion-tab-button tab="home" href="/app/home"><ion-icon :icon="albums"/><ion-label>Álbuns</ion-label></ion-tab-button><ion-tab-button tab="favorites" href="/app/favoritos"><ion-icon :icon="heart"/><ion-label>Favoritos</ion-label></ion-tab-button><ion-tab-button tab="about" href="/app/sobre"><ion-icon :icon="informationCircle"/><ion-label>Sobre</ion-label></ion-tab-button></ion-tab-bar></ion-tabs></ion-page></template><script setup lang="ts">import{IonIcon,IonLabel,IonPage,IonRouterOutlet,IonTabBar,IonTabButton,IonTabs}from'@ionic/vue';import{albums,heart,informationCircle}from'ionicons/icons';</script>
+<template>
+  <ion-page
+    ><ion-tabs
+      ><ion-router-outlet /><ion-tab-bar slot="bottom"
+        ><ion-tab-button tab="home" href="/app/home"
+          ><ion-icon :icon="albums" /><ion-label
+            >Álbuns</ion-label
+          ></ion-tab-button
+        ><ion-tab-button tab="favorites" href="/app/favoritos"
+          ><ion-icon :icon="heart" /><ion-label
+            >Favoritos</ion-label
+          ></ion-tab-button
+        ><ion-tab-button tab="about" href="/app/sobre"
+          ><ion-icon :icon="informationCircle" /><ion-label
+            >Sobre</ion-label
+          ></ion-tab-button
+        ></ion-tab-bar
+      ></ion-tabs
+    ></ion-page
+  >
+</template>
+<script setup lang="ts">
+import {
+  IonIcon,
+  IonLabel,
+  IonPage,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+} from "@ionic/vue";
+import { albums, heart, informationCircle } from "ionicons/icons";
+</script>

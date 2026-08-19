@@ -1,7 +1,65 @@
 <template>
-  <ion-page><ion-content :fullscreen="true" class="auth-page"><div class="auth-layout">
-    <section class="auth-visual"><div class="auth-logo"><ion-icon :icon="disc"/><span>REC ÁLBUM</span></div><div class="auth-copy"><h1>Sua música.<br>Seu acervo.</h1><p>Organize os discos que marcaram sua vida em um só lugar.</p></div></section>
-    <section class="auth-panel"><form class="auth-card" @submit.prevent="submit"><span class="eyebrow">Bem-vindo de volta</span><h2>Entre na sua coleção</h2><ion-input v-model="email" label="E-mail" label-placement="floating" type="email" fill="outline" required/><ion-input v-model="password" label="Senha" label-placement="floating" type="password" fill="outline" required/><p v-if="error" class="form-error">{{error}}</p><ion-button expand="block" type="submit">Entrar na coleção</ion-button><p class="auth-link">Ainda não tem conta? <router-link to="/cadastro">Cadastre-se</router-link></p></form></section>
-  </div></ion-content></ion-page>
+  <ion-page
+    ><ion-content :fullscreen="true" class="auth-page"
+      ><div class="auth-layout">
+        <section class="auth-visual">
+          <div class="auth-logo">
+            <ion-icon :icon="disc" /><span>REC ÁLBUM</span>
+          </div>
+          <div class="auth-copy">
+            <h1>Sua música.<br />Seu acervo.</h1>
+            <p>Organize os discos que marcaram sua vida em um só lugar.</p>
+          </div>
+        </section>
+        <section class="auth-panel">
+          <form class="auth-card" @submit.prevent="submit">
+            <span class="eyebrow">Bem-vindo de volta</span>
+            <h2>Entre na sua coleção</h2>
+            <ion-input
+              v-model="email"
+              label="E-mail"
+              label-placement="floating"
+              type="email"
+              fill="outline"
+              required
+            /><ion-input
+              v-model="password"
+              label="Senha"
+              label-placement="floating"
+              type="password"
+              fill="outline"
+              required
+            />
+            <p v-if="error" class="form-error">{{ error }}</p>
+            <ion-button expand="block" type="submit"
+              >Entrar na coleção</ion-button
+            >
+            <p class="auth-link">
+              Ainda não tem conta?
+              <router-link to="/cadastro">Cadastre-se</router-link>
+            </p>
+          </form>
+        </section>
+      </div></ion-content
+    ></ion-page
+  >
 </template>
-<script setup lang="ts">import{ref}from'vue';import{useRouter}from'vue-router';import{IonButton,IonContent,IonIcon,IonInput,IonPage}from'@ionic/vue';import{disc}from'ionicons/icons';import{login}from'@/services/storage';const r=useRouter(),email=ref(''),password=ref(''),error=ref('');function submit(){try{login(email.value,password.value);r.replace('/app/home')}catch(e){error.value=(e as Error).message}};</script>
+<script setup lang="ts">
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { IonButton, IonContent, IonIcon, IonInput, IonPage } from "@ionic/vue";
+import { disc } from "ionicons/icons";
+import { login } from "@/services/storage";
+const r = useRouter(),
+  email = ref(""),
+  password = ref(""),
+  error = ref("");
+function submit() {
+  try {
+    login(email.value, password.value);
+    r.replace("/app/home");
+  } catch (e) {
+    error.value = (e as Error).message;
+  }
+}
+</script>

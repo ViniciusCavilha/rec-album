@@ -1,2 +1,59 @@
-<template><ion-page><ion-header><ion-toolbar><ion-title>REC.</ion-title><ion-buttons slot="end"><ion-button @click="signOut"><ion-icon slot="start" :icon="logOutOutline"/>Sair</ion-button></ion-buttons></ion-toolbar></ion-header><ion-content><main class="page"><p class="page-kicker">Arquivo de {{currentUser?.name}}</p><h1 class="page-title">Discos que merecem replay.</h1><p class="page-subtitle">{{userAlbums.length}} {{userAlbums.length===1?'álbum guardado':'álbuns guardados'}} na sua coleção pessoal.</p><div v-if="userAlbums.length" class="grid"><AlbumCard v-for="a in userAlbums" :key="a.id" :album="a"/></div><div v-else class="empty"><div class="empty-icon"><ion-icon :icon="discOutline"/></div><h2>Comece pelo primeiro disco</h2><p>Use o botão + para adicionar um álbum à sua história.</p></div></main><ion-fab class="fab-main" slot="fixed" vertical="bottom" horizontal="end"><ion-fab-button router-link="/app/novo-album"><ion-icon :icon="add"/></ion-fab-button></ion-fab></ion-content></ion-page></template>
-<script setup lang="ts">import{useRouter}from'vue-router';import{IonButton,IonButtons,IonContent,IonFab,IonFabButton,IonHeader,IonIcon,IonPage,IonTitle,IonToolbar}from'@ionic/vue';import{add,discOutline,logOutOutline}from'ionicons/icons';import AlbumCard from'@/components/AlbumCard.vue';import{currentUser,logout,userAlbums}from'@/services/storage';const r=useRouter();function signOut(){logout();r.replace('/login')};</script>
+<template>
+  <ion-page
+    ><ion-header
+      ><ion-toolbar
+        ><ion-title>REC.</ion-title
+        ><ion-buttons slot="end"
+          ><ion-button @click="signOut"
+            ><ion-icon slot="start" :icon="logOutOutline" />Sair</ion-button
+          ></ion-buttons
+        ></ion-toolbar
+      ></ion-header
+    ><ion-content
+      ><main class="page">
+        <p class="page-kicker">Arquivo de {{ currentUser?.name }}</p>
+        <h1 class="page-title">Discos que merecem replay.</h1>
+        <p class="page-subtitle">
+          {{ userAlbums.length }}
+          {{
+            userAlbums.length === 1 ? "álbum guardado" : "álbuns guardados"
+          }}
+          na sua coleção pessoal.
+        </p>
+        <div v-if="userAlbums.length" class="grid">
+          <AlbumCard v-for="a in userAlbums" :key="a.id" :album="a" />
+        </div>
+        <div v-else class="empty">
+          <div class="empty-icon"><ion-icon :icon="discOutline" /></div>
+          <h2>Comece pelo primeiro disco</h2>
+          <p>Use o botão + para adicionar um álbum à sua história.</p>
+        </div>
+      </main>
+      <ion-fab class="fab-main" slot="fixed" vertical="bottom" horizontal="end"
+        ><ion-fab-button router-link="/app/novo-album"
+          ><ion-icon :icon="add" /></ion-fab-button></ion-fab></ion-content
+  ></ion-page>
+</template>
+<script setup lang="ts">
+import { useRouter } from "vue-router";
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonFab,
+  IonFabButton,
+  IonHeader,
+  IonIcon,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/vue";
+import { add, discOutline, logOutOutline } from "ionicons/icons";
+import AlbumCard from "@/components/AlbumCard.vue";
+import { currentUser, logout, userAlbums } from "@/services/storage";
+const r = useRouter();
+function signOut() {
+  logout();
+  r.replace("/login");
+}
+</script>
