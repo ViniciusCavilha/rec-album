@@ -9,7 +9,7 @@
 defineProps({
   name: String,
 });
-</script>
+;</script>
 
 <style scoped>
 #container {
