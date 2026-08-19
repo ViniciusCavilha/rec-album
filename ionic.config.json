@@ -1,0 +1,7 @@
+{
+  "name": "RecAlbum",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
