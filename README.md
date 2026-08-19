@@ -46,9 +46,9 @@ A interface foi pensada para dispositivos móveis, com identidade visual inspira
 
 ## Persistência dos dados
 
-No Android, contas, sessão, álbuns e músicas são persistidos em um banco SQLite nativo por meio do plugin `@capacitor-community/sqlite`. As tabelas possuem relacionamentos entre usuários, álbuns e faixas, com exclusão em cascata.
+Contas, sessão, álbuns e músicas são persistidos em SQLite por meio do plugin `@capacitor-community/sqlite`. No Android, o banco é nativo; no navegador, `jeep-sqlite` mantém o mesmo banco no IndexedDB. As tabelas possuem relacionamentos entre usuários, álbuns e faixas, com exclusão em cascata.
 
-Na primeira execução após a atualização, os dados antigos do `localStorage` são migrados automaticamente para o SQLite. Durante o desenvolvimento no navegador, o aplicativo mantém um fallback em `localStorage`, pois o banco nativo está disponível no Android.
+Na primeira abertura desta versão, dados de versões antigas são importados uma única vez para o SQLite e removidos do armazenamento anterior.
 
 > A autenticação local é adequada para fins acadêmicos e demonstração. Em um produto real, senhas devem ser processadas por um backend seguro e nunca armazenadas diretamente no dispositivo.
 
